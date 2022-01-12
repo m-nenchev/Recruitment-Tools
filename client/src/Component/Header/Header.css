@@ -1,0 +1,140 @@
+nav{
+    border-radius: 3px;
+    border: 3px solid #234465;
+}
+.header{
+    display:flex;
+    
+    
+}
+.navbar-anonymous{
+    text-align: left;
+}
+
+.navabr-1{
+    display: flex;
+}
+nav.navbar-2{
+    display: flex;
+    
+}
+nav.navbar ul .LoginDiv{
+    margin-left: 25px;
+}
+
+nav.navbar ul .span-li{
+ font-size: 25px; 
+display: table-cell;
+
+margin-left: 850px;
+padding-top: 5px;
+
+}
+
+nav.navbar ul {
+    display: flex;
+    background: transparent;
+    padding: 0.5rem;
+    border-radius: 0.3rem;
+    margin: 0;
+    float: right;
+}
+nav.navbar ul li{
+    display: block;
+    list-style: none outside;
+    position: relative; 
+}
+
+nav.navbar ul li a {
+    font-size: 1.5rem;
+    display: block;
+    padding: 0.4rem 0.8rem;
+    border-radius: 0.4rem;
+    text-decoration: none;
+    font-weight: bold;
+    background: cadetblue;
+    color: rgb(255, 255, 255);
+  }
+a{
+    margin-left: 20px;
+    font-size: 20px;
+    width: auto;
+    color:white;
+
+}
+.navbar ul li a:hover{
+    margin-top:2px;
+    background-color: cornsilk;
+    color: black;
+}
+.linkLogOut{
+    text-align: left;
+}
+.userName{
+    margin-left: 600px;
+    color: cornsilk;
+}
+@media all and (max-width:760px) {
+   header h1 {
+     font-size: 30px;
+
+   }
+   nav li {
+     float: left;
+   }
+  .ekip {
+    width: 45%;
+    text-align: center;
+  }
+  .zagrqvane,
+  .Razpuskane img {
+    margin-left: 13px;
+  }
+  .img {
+    width: 55%;
+  }
+.Razpuskane > div {
+  width: 53%;
+  }
+
+  footer li {
+  float: left;
+  }
+  footer a {
+    font-size: 15px;
+  }
+  .top-list {
+
+  display: none;
+
+  height: auto;
+}
+  #menu-icon {
+
+  display: inline-block;
+
+  }
+  nav {
+    height: 64px;
+  }
+  nav li {
+
+    text-align: center;
+
+    width: 100%;
+
+    padding: 10px 0;
+
+    margin: 0;
+
+  }
+
+  nav li {
+
+  background: #f6f6f6;}
+
+  nav:hover ul.top-list{
+
+    display: block;
+ }
+}
