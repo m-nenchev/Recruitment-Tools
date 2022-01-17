@@ -1,5 +1,5 @@
 import './JobsEdit.css'
-import * as JobsServises from '../services/JobsServises'
+import * as JobsServises from '../services/JobsServices'
 import { useState,useEffect } from "react";
 import { useHistory } from "react-router-dom";
 

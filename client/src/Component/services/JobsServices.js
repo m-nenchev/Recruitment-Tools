@@ -49,3 +49,8 @@ export function deleteById(_id) {
         .catch(err => console.error(err));
 }
 
+export function getJobsCandidates(_id){
+  return fetch(`${url}/${_id}/candidates`)
+  .then(res => res.json())
+  .catch(err => console.error(err));
+}

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useHistory } from "react-router-dom";
-import * as JobsServises from '../Component/services/JobsServises'
+import * as JobsServises from '../Component/services/JobsServices'
 export default function DeletePost({
     match
  

@@ -1,28 +1,29 @@
 import { useState,useEffect } from "react";
+import * as CandidatesServises from '../services/CandidatesServices'
+import * as JobsServices from '../services/JobsServices'
 function Candidates({
     _id,
    
+
 }){
 
-    const urlCandidates = 'http://localhost:5000/candidates'
+    
     const[data,setData] = useState([{}])
     const [toAdd,setToAdd] = useState('');
-    const[canId,setCanId] = useState([{}])
+    const[candidat,setCandidat] = useState([{}])
     const[candViewId,setCandViewId]=useState([])
 
       
-          
-    useEffect(()=>{
-        
-       fetch(urlCandidates)
-       .then(res => {
-        return res.json();
-        })
-        .then(post => {
-        setData(post);
-        });
-    },[])
+   useEffect(()=>{
+        CandidatesServises.getAllCandidates()
+        .then(res => setData(res))
+    },[])       
     
+    useEffect(() => {
+        JobsServices.getJobsCandidates(_id)
+        .then(res => setCandidat(res))
+    },[])
+
     
     const onAddCandidatesSelectChangeHandler = (e)=>{
         e.preventDefault();
@@ -35,11 +36,13 @@ function Candidates({
         e.preventDefault();
        setCandViewId(e.target.id)
        let data = {candidateId:toAdd}
+       
+    
         fetch(`http://localhost:5000/jobs/${_id}/candidates`,{
             method: 'POST',
             headers: {
-                
-                'Content-Type': 'text/plain'
+                'accept': 'application/json',
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify(data)
            
@@ -67,7 +70,7 @@ function Candidates({
             
     }
     
-       
+       console.log(candidat);
         return(
     <div>
        <select onChange={onAddCandidatesSelectChangeHandler} >
@@ -83,6 +86,13 @@ function Candidates({
     
 </select>
 
+<ul>
+ {candidat.map(candidates =>
+    <li key={candidates._id}>
+      {`${candidates.firstName} ${candidates.lastName} ${candidates.lastName}`}
+    </li>
+    )}
+</ul>
 <button  id={_id} onClick={onCandidateAddClickHandler} >Add Candidat</button>
 
 
