@@ -6,6 +6,12 @@ const JobsDetails = ({
 match 
 })=>{ 
     const[data,setData] = useState([])
+    const[candidatElected,setCandidateElected] = useState([])
+
+     useEffect(()=>{
+         JobsServises.getJobsCandidates(match.params._id)
+         .then(res => setCandidateElected(res))
+     },[])
 
      useEffect(() => {
         JobsServises.getOne(match.params._id)
@@ -20,6 +26,7 @@ match
            <p>{data.title}</p>
            <p>{data.description}</p>
            <p><Candidates _id={match.params._id}/></p>
+           
         </div>
     </section>
 )

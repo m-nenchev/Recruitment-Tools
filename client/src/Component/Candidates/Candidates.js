@@ -1,18 +1,18 @@
 import { useState,useEffect } from "react";
 import * as CandidatesServises from '../services/CandidatesServices'
 import * as JobsServices from '../services/JobsServices'
+
 function Candidates({
     _id,
    
-
 }){
 
-    
+
     const[data,setData] = useState([{}])
     const [toAdd,setToAdd] = useState('');
     const[candidat,setCandidat] = useState([{}])
-    const[candViewId,setCandViewId]=useState([])
-
+    const[candViewId,setCandViewId]=useState({})
+    
       
    useEffect(()=>{
         CandidatesServises.getAllCandidates()
@@ -22,7 +22,7 @@ function Candidates({
     useEffect(() => {
         JobsServices.getJobsCandidates(_id)
         .then(res => setCandidat(res))
-    },[])
+    },[candViewId])
 
     
     const onAddCandidatesSelectChangeHandler = (e)=>{
@@ -34,10 +34,10 @@ function Candidates({
     }
      const onCandidateAddClickHandler = (e)=>{
         e.preventDefault();
-       setCandViewId(e.target.id)
-       let data = {candidateId:toAdd}
        
-    
+       var data = {candidateId:toAdd}
+      setCandViewId(data) 
+      
         fetch(`http://localhost:5000/jobs/${_id}/candidates`,{
             method: 'POST',
             headers: {
@@ -48,7 +48,7 @@ function Candidates({
            
         }).then(res => console.log(res))
       
-        
+     
      }
      
      
@@ -56,7 +56,7 @@ function Candidates({
      
      const onJobCandidateDeleteHandler = (e) => {
         e.preventDefault();
-        let idd = e.target.id
+        let idd = e.currentTarget.id
         
         fetch(`http://localhost:5000/jobs/${_id}/candidates/${idd}`,{
             method: 'DELETE',
@@ -67,10 +67,10 @@ function Candidates({
         }).then(res => console.log(res))
         var element = document.getElementById('candidat');
            element.remove() 
-            
+        
     }
     
-       console.log(candidat);
+      
         return(
     <div>
        <select onChange={onAddCandidatesSelectChangeHandler} >
@@ -85,15 +85,16 @@ function Candidates({
     </option>)}
     
 </select>
-
+<button  id={_id} onClick={onCandidateAddClickHandler} >Add Candidat</button>
 <ul>
  {candidat.map(candidates =>
-    <li key={candidates._id}>
+    <li id="candidat" key={candidates._id}>
       {`${candidates.firstName} ${candidates.lastName} ${candidates.lastName}`}
+      <button  id={candidates._id} onClick={onJobCandidateDeleteHandler} >Delete Candidat</button>
     </li>
     )}
 </ul>
-<button  id={_id} onClick={onCandidateAddClickHandler} >Add Candidat</button>
+
 
 
 
